@@ -3,6 +3,7 @@
 <head>
   <title>Workspace</title>
   <%= stylesheet_link_tag    'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css'%>
+  <%= stylesheet_link_tag    "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"%>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -10,21 +11,35 @@
 <body>
   
 <body>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
       <a class="navbar-brand" href="/">Music Album Reviews</a>
     </div>
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="/">Home</a></li>
-      <li><a href="/albums">Albums</a></li>
-      <li><a href="/albums/new">Create</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><%= link_to "Sign Up", new_user_registration_path %></li>
-      <li><%= link_to "Sign In", new_user_session_path %></li>
-      <li><%= link_to "Sign Out", destroy_user_session_path, method: 'delete' %></li>
-    </ul>  
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="/albums">Albums</a></li>
+        <li><a href="/albums/new">Create</a></li>
+      </ul>
+      <ul class="nav navbar-form navbar-right">
+        <div class="form-group">
+          <%= form_tag(albums_path, :method => "get", id: "search-bar") do %>
+            <%= search_field_tag :search, params[:search], placeholder: "Search..." %>
+          <% end %>
+        </div>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Sign Up", new_user_registration_path %></li>
+        <li><%= link_to "Sign In", new_user_session_path %></li>
+        <li><%= link_to "Sign Out", destroy_user_session_path, method: 'delete' %></li>
+      </ul>  
+    </div>
 </nav>
 
 <%= yield %>

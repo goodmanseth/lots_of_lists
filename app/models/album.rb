@@ -4,4 +4,9 @@ class Album < ApplicationRecord
     validates :description, :presence => true
     
     has_many :reviews
+    
+    def self.search(search)
+        where("title LIKE ? OR artist LIKE ?", "%#{search}%", "%#{search}%") 
+    end
 end
+

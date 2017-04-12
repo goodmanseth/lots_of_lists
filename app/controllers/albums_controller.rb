@@ -5,7 +5,11 @@ class AlbumsController < ApplicationController
   # GET /albums
   # GET /albums.json
   def index
-    @albums = Album.order(sort_column + " " + sort_direction)
+    if params[:search]
+      @albums = Album.search(params[:search]).order("title ASC")
+    else
+      @albums = Album.order(sort_column + " " + sort_direction)
+    end
   end
 
   # GET /albums/1

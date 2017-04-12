@@ -20,7 +20,7 @@ gem 'sdoc'
 # provide support for user authentication
 gem 'devise'
 
-gem 'searchlogic'
+# gem 'searchlogic'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 # Use Unicorn as the app server
