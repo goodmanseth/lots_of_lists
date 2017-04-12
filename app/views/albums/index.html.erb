@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Albums</h1>
+  
+  <p>Sort by: <%= sortable "Title"%> 
+  | <%= sortable "Artist"%></p>
+
+  <table>
+    <thead>
+    <tr>
+      <th>Title</th>
+      <th>Artist</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @albums.each do |album| %>
+      <tr>
+        <td><%= album.title %></td>
+        <td><%= album.artist %></td>
+        <td><%= link_to 'More Information', album %></td>
+        <td><%= link_to 'Edit', edit_album_path(album) %></td>
+        <td><%= link_to 'Delete', album, method: :delete, data: { confirm: 'Are you sure you want to delete this album?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Album', new_album_path %>
