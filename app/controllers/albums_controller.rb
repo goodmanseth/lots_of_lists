@@ -78,7 +78,11 @@ class AlbumsController < ApplicationController
     end
     
     def sort_column
-      params[:sort] || "title"
+      if params[:search]
+        params[:search] || "title"
+      else
+        params[:sort] || "title"
+      end
     end
     
     def sort_direction
