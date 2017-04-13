@@ -17,9 +17,17 @@
    text-align: center;
  }
 
-.tablebody {
+.tablebody, .show, .addreviews {
   margin: auto;
   background-color: lightgray;
+  width: 60%;
+  padding: 1px 2% 2% 2%;
+  border-radius: 25px;
+}
+
+.reviews {
+  margin: auto;
+  background-color: #AAAAAA;
   width: 60%;
   padding: 1px 2% 2% 2%;
   border-radius: 25px;
