@@ -25,7 +25,7 @@
   border-radius: 25px;
 }
 
-.reviews {
+.reviews, .create {
   margin: auto;
   background-color: #AAAAAA;
   width: 60%;
