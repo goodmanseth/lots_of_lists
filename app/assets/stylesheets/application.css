@@ -13,10 +13,21 @@
  *= require_tree .
  *= require_self
  */
- body, tr,th {
+ body {
    text-align: center;
  }
 
+.tablebody {
+  margin: auto;
+  background-color: lightgray;
+  width: 60%;
+  padding: 1px 2% 2% 2%;
+  border-radius: 25px;
+}
+
+td {
+  text-align: left;
+}
  
  
  
