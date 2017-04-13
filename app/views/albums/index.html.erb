@@ -21,7 +21,9 @@
         <td><%= album.artist %></td>
         <td><%= link_to 'More Information', album %></td>
         <td><%= link_to 'Edit', edit_album_path(album) %></td>
+        <% if current_user == album.user%>
         <td><%= link_to 'Delete', album, method: :delete, data: { confirm: 'Are you sure you want to delete this album?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

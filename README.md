@@ -1,5 +1,5 @@
-Seth Goodman (sg277)
+## Seth Goodman (sg277)
 
-Lots of Lists
+Lots of Lists, 12 April 2017
 
-Heroku Website: https://gentle-ridge-84136.herokuapp.com/ 
+Heroku Website: https://ancient-escarpment-61036.herokuapp.com/
