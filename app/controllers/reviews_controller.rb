@@ -1,4 +1,6 @@
 class ReviewsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :destroy]
+  
   def create
     @album = Album.find(params[:album_id])
     @review = @album.reviews.create(review_params)

@@ -1,6 +1,8 @@
 class AlbumsController < ApplicationController
   before_action :set_album, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create, :index]
   helper_method :sort_column, :sort_direction
+  add_flash_types :error
 
   # GET /albums
   # GET /albums.json
@@ -10,6 +12,10 @@ class AlbumsController < ApplicationController
     else
       @albums = Album.order(sort_column + " " + sort_direction)
     end
+  end
+  
+  def myalbums
+    @albums = current_user.albums.order(sort_column + " " + sort_direction)
   end
 
   # GET /albums/1
@@ -30,6 +36,7 @@ class AlbumsController < ApplicationController
   # POST /albums.json
   def create
     @album = Album.new(album_params)
+    @album.user = current_user
 
     respond_to do |format|
       if @album.save
@@ -59,10 +66,16 @@ class AlbumsController < ApplicationController
   # DELETE /albums/1
   # DELETE /albums/1.json
   def destroy
-    @album.destroy
-    respond_to do |format|
-      format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user == @album.user
+      @album.destroy
+      respond_to do |format|
+        format.html { redirect_to albums_url, notice: 'Album was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html {redirect_to albums_url, error: 'Unable to remove album: only the original creator can remove an album.'}
+      end
     end
   end
 
@@ -78,11 +91,7 @@ class AlbumsController < ApplicationController
     end
     
     def sort_column
-      if params[:search]
-        params[:search] || "title"
-      else
         params[:sort] || "title"
-      end
     end
     
     def sort_direction
