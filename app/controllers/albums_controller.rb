@@ -3,6 +3,7 @@ class AlbumsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create, :index]
   helper_method :sort_column, :sort_direction
   add_flash_types :error
+  before_filter :authenticate_user!
 
   # GET /albums
   # GET /albums.json
